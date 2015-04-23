@@ -10,17 +10,13 @@ import org.json.JSONObject;
 
 import android.app.ListActivity;
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
-import android.widget.TextView;
 
 public class MainActivity extends ListActivity {
 
@@ -63,22 +59,19 @@ public class MainActivity extends ListActivity {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				/*
-				// getting values from selected ListItem
-				String name = ((TextView) view.findViewById(R.id.name))
-						.getText().toString();
-				String cost = ((TextView) view.findViewById(R.id.email))
-						.getText().toString();
-				String description = ((TextView) view.findViewById(R.id.mobile))
-						.getText().toString();
-
-				// Starting single contact activity
-				Intent in = new Intent(getApplicationContext(),
-						SingleContactActivity.class);
-				in.putExtra(TAG_NAME, name);
-				in.putExtra(TAG_EMAIL, cost);
-				in.putExtra(TAG_PHONE_MOBILE, description);
-				startActivity(in);
-				*/
+				 * // getting values from selected ListItem String name =
+				 * ((TextView) view.findViewById(R.id.name))
+				 * .getText().toString(); String cost = ((TextView)
+				 * view.findViewById(R.id.email)) .getText().toString(); String
+				 * description = ((TextView) view.findViewById(R.id.mobile))
+				 * .getText().toString();
+				 * 
+				 * // Starting single contact activity Intent in = new
+				 * Intent(getApplicationContext(), SingleContactActivity.class);
+				 * in.putExtra(TAG_NAME, name); in.putExtra(TAG_EMAIL, cost);
+				 * in.putExtra(TAG_PHONE_MOBILE, description);
+				 * startActivity(in);
+				 */
 			}
 		});
 
@@ -90,17 +83,6 @@ public class MainActivity extends ListActivity {
 	 * Async task class to get json by making HTTP call
 	 * */
 	private class GetContacts extends AsyncTask<Void, Void, Void> {
-
-		@Override
-		protected void onPreExecute() {
-			super.onPreExecute();
-			// Showing progress dialog
-			pDialog = new ProgressDialog(MainActivity.this);
-			pDialog.setMessage("Please wait...");
-			pDialog.setCancelable(false);
-			pDialog.show();
-
-		}
 
 		@Override
 		protected Void doInBackground(Void... arg0) {
@@ -115,14 +97,14 @@ public class MainActivity extends ListActivity {
 			if (jsonStr != null) {
 				try {
 					JSONObject jsonObj = new JSONObject(jsonStr);
-					
+
 					// Getting JSON Array node
 					contacts = jsonObj.getJSONArray(TAG_CONTACTS);
 
 					// looping through All Contacts
 					for (int i = 0; i < contacts.length(); i++) {
 						JSONObject c = contacts.getJSONObject(i);
-						
+
 						String id = c.getString(TAG_ID);
 						String name = c.getString(TAG_NAME);
 						String email = c.getString(TAG_EMAIL);
@@ -167,14 +149,24 @@ public class MainActivity extends ListActivity {
 			 * Updating parsed JSON data into ListView
 			 * */
 			/*
-			ListAdapter adapter = new SimpleAdapter(
-					MainActivity.this, contactList,
-					R.layout.list_item, new String[] { TAG_NAME, TAG_EMAIL,
-							TAG_PHONE_MOBILE }, new int[] { R.id.name,
-							R.id.email, R.id.mobile });
-			
-			setListAdapter(adapter);
-			*/
+			 * ListAdapter adapter = new SimpleAdapter( MainActivity.this,
+			 * contactList, R.layout.list_item, new String[] { TAG_NAME,
+			 * TAG_EMAIL, TAG_PHONE_MOBILE }, new int[] { R.id.name, R.id.email,
+			 * R.id.mobile });
+			 * 
+			 * setListAdapter(adapter);
+			 */
+		}
+
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			// Showing progress dialog
+			pDialog = new ProgressDialog(MainActivity.this);
+			pDialog.setMessage("Please wait...");
+			pDialog.setCancelable(false);
+			pDialog.show();
+
 		}
 
 	}
