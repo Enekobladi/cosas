@@ -10,6 +10,13 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
+/**
+ * 
+ * Main. Menu...
+ * 
+ * @author Eneko
+ * 
+ */
 public class MainActivity extends Activity {
 
 	private Context context;

@@ -18,7 +18,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
-public class MainActivity extends ListActivity {
+public class GetData extends ListActivity {
 
 	private ProgressDialog pDialog;
 
@@ -162,7 +162,7 @@ public class MainActivity extends ListActivity {
 		protected void onPreExecute() {
 			super.onPreExecute();
 			// Showing progress dialog
-			pDialog = new ProgressDialog(MainActivity.this);
+			pDialog = new ProgressDialog(GetData.this);
 			pDialog.setMessage("Please wait...");
 			pDialog.setCancelable(false);
 			pDialog.show();
