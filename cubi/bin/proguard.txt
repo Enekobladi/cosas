@@ -1,0 +1,6 @@
+# view AndroidManifest.xml #generated:20
+-keep class eu.eu.cubi.MainActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:30
+-keep class eu.eu.cubi.ServiceThread { <init>(...); }
+
