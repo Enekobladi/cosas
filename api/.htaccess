@@ -1,0 +1,7 @@
+ RewriteEngine on  
+ RewriteBase /Controller/  
+ RewriteCond %{REQUEST_FILENAME} !-d  
+ RewriteCond %{REQUEST_FILENAME} !-f  
+ RewriteCond %{REQUEST_FILENAME} !-l  
+ RewriteRule ^(.+)$ Api.php?url=$1 [QSA,NC,L]  
+ # https://192.168.56.101/api/Controller/Api.php?url=test
